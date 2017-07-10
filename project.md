@@ -166,15 +166,15 @@ The accuracies of training and validation are shown in the following table:
 ```r
 accuracy <- data.frame(Train.Accu = c(trainErr_rpart, trainErr_rf), 
                        Validation.Accu = c(validationErr_rpart, validationErr_rf),
-                       row.names = c("Random Forest", "Decision Tree"))
-library(knitr)
-kable(accuracy)
+                       row.names = c("Decision Tree", "Random Forest"))
+accuracy
 ```
 
-                 Train.Accu   Validation.Accu
---------------  -----------  ----------------
-Random Forest     0.4032107         0.3987261
-Decision Tree     0.9524335         0.9510828
+```
+##               Train.Accu Validation.Accu
+## Decision Tree  0.4032107       0.3987261
+## Random Forest  0.9524335       0.9510828
+```
 
 Therefore, **random forest is chosen**. The out-of-sample error is estimated using the test set:
 

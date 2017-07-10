@@ -222,30 +222,11 @@ validationErr_svmr &lt;- mean(pred_validation_svmr == ppValidationSet$classe)</c
 <p>The accuracies of training and validation are shown in the following table:</p>
 <pre class="r"><code>accuracy &lt;- data.frame(Train.Accu = c(trainErr_rpart, trainErr_rf), 
                        Validation.Accu = c(validationErr_rpart, validationErr_rf),
-                       row.names = c(&quot;Random Forest&quot;, &quot;Decision Tree&quot;))
-library(knitr)
-kable(accuracy)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th align="right">Train.Accu</th>
-<th align="right">Validation.Accu</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Random Forest</td>
-<td align="right">0.4032107</td>
-<td align="right">0.3987261</td>
-</tr>
-<tr class="even">
-<td>Decision Tree</td>
-<td align="right">0.9524335</td>
-<td align="right">0.9510828</td>
-</tr>
-</tbody>
-</table>
+                       row.names = c(&quot;Decision Tree&quot;, &quot;Random Forest&quot;))
+accuracy</code></pre>
+<pre><code>##               Train.Accu Validation.Accu
+## Decision Tree  0.4032107       0.3987261
+## Random Forest  0.9524335       0.9510828</code></pre>
 <p>Therefore, <strong>random forest is chosen</strong>. The out-of-sample error is estimated using the test set:</p>
 <pre class="r"><code>pred_test_rf &lt;- predict(fit_rf, newdata = ppTestSet)
 testErr_rf &lt;- mean(pred_test_rf == ppTestSet$classe)</code></pre>
