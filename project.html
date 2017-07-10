@@ -182,7 +182,7 @@ nCorPairs</code></pre>
 <pre><code>## [1] 38</code></pre>
 <p>There are 38 highly correlated pairs (correlation coefficient &gt;= 0.7). Principal Component Analysis (PCA) is used to reduce dimension. Note that PCA is performed on the training set. When predicting the validation, test, and unknown sets, we will still use the principal components computed from the training set.</p>
 <pre class="r"><code># the first column of trainSet is user_name
-preprocessObj &lt;- preProcess(trainSet[, -c(1,indexResult)], method = c(&quot;center&quot;, &quot;scale&quot;, &quot;pca&quot;), thresh = 0.8)
+preprocessObj &lt;- preProcess(trainSet[, -c(1,indexResult)], method = c(&quot;center&quot;, &quot;scale&quot;, &quot;pca&quot;), thresh = 0.9)
 preprocessObj</code></pre>
 <pre><code>## Created from 11773 samples and 52 variables
 ## 
@@ -192,8 +192,8 @@ preprocessObj</code></pre>
 ##   - principal component signal extraction (52)
 ##   - scaled (52)
 ## 
-## PCA needed 12 components to capture 80 percent of the variance</code></pre>
-<p>This reduces the dimension of the numerical variables to 12.</p>
+## PCA needed 18 components to capture 90 percent of the variance</code></pre>
+<p>This reduces the dimension of the numerical variables to 18.</p>
 <pre class="r"><code>ppTrainSet &lt;- predict(preprocessObj, trainSet[, -c(1,indexResult)])
 ppTrainSet$user_name &lt;- trainSet$user_name
 ppTrainSet$classe &lt;- trainSet$classe
@@ -225,12 +225,12 @@ validationErr_svmr &lt;- mean(pred_validation_svmr == ppValidationSet$classe)</c
                        row.names = c(&quot;Decision Tree&quot;, &quot;Random Forest&quot;))
 accuracy</code></pre>
 <pre><code>##               Train.Accu Validation.Accu
-## Decision Tree  0.4032107       0.3987261
-## Random Forest  0.9524335       0.9510828</code></pre>
+## Decision Tree  0.3800221       0.3681529
+## Random Forest  0.9659390       0.9633121</code></pre>
 <p>Therefore, <strong>random forest is chosen</strong>. The out-of-sample error is estimated using the test set:</p>
 <pre class="r"><code>pred_test_rf &lt;- predict(fit_rf, newdata = ppTestSet)
 testErr_rf &lt;- mean(pred_test_rf == ppTestSet$classe)</code></pre>
-<p><strong>The out-of-sample error is 0.9495413.</strong></p>
+<p><strong>The out-of-sample error is 0.9615189.</strong></p>
 </div>
 <div id="predicting-the-unknown-set" class="section level2">
 <h2>Predicting the Unknown Set</h2>
@@ -241,7 +241,7 @@ ppUnknownSet$user_name &lt;- unknownSet$user_name</code></pre>
 <pre class="r"><code>pred_unknown_rf &lt;- predict(fit_rf, newdata = ppUnknownSet)
 pred_unknown_rf</code></pre>
 <pre><code>##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
-##  B  A  A  A  A  E  D  B  A  A  A  C  B  A  E  E  A  B  B  B 
+##  B  A  A  A  A  E  D  B  A  A  B  C  B  A  E  E  A  B  B  B 
 ## Levels: A B C D E</code></pre>
 </div>
 

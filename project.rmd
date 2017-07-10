@@ -94,11 +94,11 @@ There are 38 highly correlated pairs (correlation coefficient >= 0.7). Principal
 
 ```{r}
 # the first column of trainSet is user_name
-preprocessObj <- preProcess(trainSet[, -c(1,indexResult)], method = c("center", "scale", "pca"), thresh = 0.8)
+preprocessObj <- preProcess(trainSet[, -c(1,indexResult)], method = c("center", "scale", "pca"), thresh = 0.9)
 preprocessObj
 ```
 
-This reduces the dimension of the numerical variables to 12. 
+This reduces the dimension of the numerical variables to 18. 
 
 ```{r}
 ppTrainSet <- predict(preprocessObj, trainSet[, -c(1,indexResult)])

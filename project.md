@@ -98,7 +98,7 @@ There are 38 highly correlated pairs (correlation coefficient >= 0.7). Principal
 
 ```r
 # the first column of trainSet is user_name
-preprocessObj <- preProcess(trainSet[, -c(1,indexResult)], method = c("center", "scale", "pca"), thresh = 0.8)
+preprocessObj <- preProcess(trainSet[, -c(1,indexResult)], method = c("center", "scale", "pca"), thresh = 0.9)
 preprocessObj
 ```
 
@@ -111,10 +111,10 @@ preprocessObj
 ##   - principal component signal extraction (52)
 ##   - scaled (52)
 ## 
-## PCA needed 12 components to capture 80 percent of the variance
+## PCA needed 18 components to capture 90 percent of the variance
 ```
 
-This reduces the dimension of the numerical variables to 12. 
+This reduces the dimension of the numerical variables to 18. 
 
 
 ```r
@@ -172,8 +172,8 @@ accuracy
 
 ```
 ##               Train.Accu Validation.Accu
-## Decision Tree  0.4032107       0.3987261
-## Random Forest  0.9524335       0.9510828
+## Decision Tree  0.3800221       0.3681529
+## Random Forest  0.9659390       0.9633121
 ```
 
 Therefore, **random forest is chosen**. The out-of-sample error is estimated using the test set:
@@ -184,7 +184,7 @@ pred_test_rf <- predict(fit_rf, newdata = ppTestSet)
 testErr_rf <- mean(pred_test_rf == ppTestSet$classe)
 ```
 
-**The out-of-sample error is 0.9495413.**
+**The out-of-sample error is 0.9615189.**
 
 ## Predicting the Unknown Set
 
@@ -206,7 +206,7 @@ pred_unknown_rf
 
 ```
 ##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
-##  B  A  A  A  A  E  D  B  A  A  A  C  B  A  E  E  A  B  B  B 
+##  B  A  A  A  A  E  D  B  A  A  B  C  B  A  E  E  A  B  B  B 
 ## Levels: A B C D E
 ```
 
