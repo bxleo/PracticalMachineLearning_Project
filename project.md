@@ -186,7 +186,7 @@ testErr_rf <- mean(pred_test_rf == ppTestSet$classe)
 
 **The out-of-sample error is 0.9495413.**
 
-## Prediction the Unknown Set
+## Predicting the Unknown Set
 
 Preprocess the unknown using the principal components of the training set:
 

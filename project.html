@@ -232,8 +232,8 @@ accuracy</code></pre>
 testErr_rf &lt;- mean(pred_test_rf == ppTestSet$classe)</code></pre>
 <p><strong>The out-of-sample error is 0.9495413.</strong></p>
 </div>
-<div id="prediction-the-unknown-set" class="section level2">
-<h2>Prediction the Unknown Set</h2>
+<div id="predicting-the-unknown-set" class="section level2">
+<h2>Predicting the Unknown Set</h2>
 <p>Preprocess the unknown using the principal components of the training set:</p>
 <pre class="r"><code>ppUnknownSet &lt;- predict(preprocessObj, unknownSet[, -1])
 ppUnknownSet$user_name &lt;- unknownSet$user_name</code></pre>
